@@ -1,0 +1,24 @@
+# Makefile
+
+# Initialize
+CC   = gcc
+FLAG = -Wall
+TGT  = sfm
+
+# Source file (.c)
+SRC  = main.c
+SRC += print.c
+SRC += general.c
+SRC += image.c
+SRC += net.c
+
+# Object file (.o)
+OBJ  = $(SRC:.c=.o)
+
+all:	$(TGT)
+
+$(TGT):	$(OBJ)
+	$(CC) $(FLAG) -o $@ $(OBJ)
+
+%.o:	%.c
+	$(CC) $(FLAG) -c $< -o $@
