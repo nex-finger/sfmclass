@@ -5,15 +5,9 @@
 <br>
 <img src="https://img.shields.io/badge/licence-masuda-green">
 <img src="https://img.shields.io/badge/university-CIT-green">
-<img src="https://img.shields.io/badge/undergraduate-Computer%20Science-green">
-<br>
-<img src="https://img.shields.io/badge/Arduino-blue">
-<img src="https://img.shields.io/badge/TK80-blue">
-<img src="https://img.shields.io/badge/Kansas%20City%20standard%20(KCS)-blue">
-<br>
-<img src="https://img.shields.io/badge/c++-yellow">
-<img src="https://img.shields.io/badge/Python-yellow">
-<img src="https://img.shields.io/badge/8080assembry-yellow">
+<img src="https://img.shields.io/badge/Neural Network-blue">
+<img src="https://img.shields.io/badge/MinGW-yellow">
+<img src="https://img.shields.io/badge/c-yellow">
 <br>
 
 <table>
@@ -29,14 +23,24 @@
 </div>
 
 [概要](#概要)  
+[実行環境](#実行環境)  
 [つまずきそうな要素](#つまずきそうな要素)
 
 ## 概要
 ソフトメディア研究会4回生のmasudaです  
 今回SOFTMEDIAの文字分類タスクを解くプログラムをcで書きました  
+snistと命名しようとしたらnistはまあまあ権威のあるあーだこーだでsfnclassにしました  
 c99準拠です  
 windows98で動くことを念頭に置いているので現代的でない部分についてはご容赦お願いします  
 Shift-JISフォーマットで書いているので，各自reopenしてください  
+
+## 実行環境
+- OS: windows98
+- CPU: PentiumMMX (1core, 233MHz)
+- RAM: 96MB, 528MB/s
+- HDD: 3.2GB, 5400rpm
+- コンパイラ: MinGW32
+    - これらの環境だと1枚の推論に20秒くらいかかります（メインPCなら1秒以内）
 
 ## つまずきそうな要素
 ### 入力画像について
@@ -47,7 +51,9 @@ trainフォルダはネットワークの学習に用いられています
 testフォルダはネットワークの検証に用いられます  
 また，これらの画像の解像度には制約があります  
 拡張子bmp，解像度16x16，ビットの深さ24，各ピクセルはRGB000000もしくはRGBFFFFFFのどちらかである必要があります  
-この制約に則るとひとつの画像データは822バイトになりますので，自分のデータを入力したいときはあらかじめプロパティからこれらの要素を確認してください
+この制約に則るとひとつの画像データは822バイトになりますので，自分のデータを入力したいときはあらかじめプロパティからこれらの要素を確認してください  
+https://www.setsuki.com/hsp/ext/bmp.htm  
+を参考にし，メモリ情報を生で取ってきてこねてるので興味のある人はぜひ確認してみてください
 
 ### makeについて
 複数のcファイルをソースとして1つの実行ファイルを生成する場合，makefileを用いることが一般的です  
@@ -56,5 +62,6 @@ makefileの書き方はレガシーなアレを含むので積極的に学ぶ必
 
 ### 実行時のコマンドライン引数
 makeを実行すると実行可能ファイルsfm.exeが生成されます  
-sfm.exeの実行時，引数として入力画像のパスを指定してください  
+sfm.exeの実行時，引数として入力画像の相対パスを指定してください  
 例：sfm img/test/0000s.bmp
+
